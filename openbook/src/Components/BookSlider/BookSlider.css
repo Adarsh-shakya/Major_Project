@@ -1,0 +1,26 @@
+.bookslider{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+.slider{
+    width: 100%;
+}
+.sliderHeading{
+    height: 50px;
+    padding-left: 15px;
+    border-top-left-radius: 10px;
+    background-image: linear-gradient(to right, rgb(20, 20, 148) , white);
+    
+}
+.sliderHeading a{
+    text-decoration: none;
+    font-size: 30px;
+    color: white;
+    
+}
+.sliderContenar{
+    border: 2px solid green;
+    display: flex;
+    overflow: scroll;
+}

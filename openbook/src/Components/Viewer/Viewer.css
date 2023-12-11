@@ -1,0 +1,4 @@
+.viewer iframe{
+    width: calc(100% - 4px);
+    height: 563px;
+}

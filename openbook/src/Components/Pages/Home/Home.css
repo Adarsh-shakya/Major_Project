@@ -1,0 +1,11 @@
+.home{}
+
+.homeHeader{
+    display: flex;
+    justify-content: center;
+}
+
+.homeHeader img{
+    width: 100%;
+    
+}
