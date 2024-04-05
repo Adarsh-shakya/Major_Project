@@ -23,7 +23,7 @@ function Card({data}) {
        {
        User?
        data.link ? ( <Link to={`/viewer/${encodeURIComponent(data.link)}`}>Read</Link> ) : 
-       ( <span>Not Abailable</span>):( <button onClick={hendelClaick}>Read</button>)
+       ( <span>Not Available</span>):( <button onClick={hendelClaick}>Read</button>)
 
       }  
        

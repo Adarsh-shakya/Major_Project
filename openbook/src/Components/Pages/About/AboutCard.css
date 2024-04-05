@@ -1,0 +1,41 @@
+.aboutCard{
+    width: 200px;
+    height: 280px;
+    border-radius: 8px;
+    background-color:rgb(243, 209, 165);
+    padding-top: 5px;
+    box-shadow: 2px 2px gainsboro;
+}
+
+.aboutCardImg{
+    display: flex;
+    justify-content: center;
+    
+    height: 130px;
+}
+.aboutCardImg img{
+  width: 90px;
+  
+  
+  border-radius: 50px;
+}
+.naam{
+    text-align: center;
+}
+.aboutMe{
+    margin-top: 10px;
+    text-align: center;
+    font-family: 'Courier New', Courier;
+    color: gray;
+    font-size: 13px;
+    
+    height: 60px;
+}
+.socialMedia{
+    width: 80%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 30px;
+    margin-left: 10%;
+    
+}

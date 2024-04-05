@@ -13,6 +13,9 @@
     background-color: black;
     padding: 10px 18px;
   }
+  .left_container{
+    display: flex;
+  }
   .nav-item{
     margin:0px 3px;
     font-size: small;
@@ -49,10 +52,41 @@
     border:solid 1px blue;
     border-radius:3px;
     font-size: 15px;
-    background-color: blue;
+    background-color:rgb(2, 56, 172);
     cursor:pointer;
 }
 .nav-link:hover{
     background-color: rgb(164, 164, 240);
 }
+
+.dropdown-content{
+  background-color: white;
+  position: absolute;
+  border-radius: 10px;
+  padding-top: 30px;
+  margin-top: 10px;
+  margin-left: 50px;
   
+}
+
+.dropdown-content li{
+  color: black;
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.dropdown-content a{
+  color: black;
+}
+.dropbtn{
+  background-color: black;
+  height: 30px;
+  margin: auto;
+  padding:0 ;
+  text-align: center;
+  outline: none;
+  border: 1px solid white;
+  border-radius: 2px;
+  width: 120px;
+  font-size: 16px;
+}

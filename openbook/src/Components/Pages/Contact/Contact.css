@@ -1,0 +1,35 @@
+.contactHeader{
+    text-align: center;
+    font-size: 40px;
+}
+body{
+    background-color: snow;
+}
+.contactbody{
+    display: flex;
+    
+}
+form{
+    margin: 0px;
+}
+.leftbody{
+    width: 50%;
+    
+    padding: 30px;
+}
+.leftbody input{
+    width: 70%;
+    height: 30px;
+    margin-bottom: 30px;
+}
+.rightbody{
+    width: 50%;
+    border: 0;
+    
+}
+iframe{
+    width: 90%;
+    height: 300px;
+    margin-top: 20px;
+    border: 0;
+}

@@ -11,7 +11,8 @@ import Textbook from './Components/Pages/Textbook';
 import Viewer from './Components/Viewer/Viewer';
 import Auth from './Components/Pages/Auth/Auth';
 import AddBook from './Components/Pages/AddBook/AddBook';
-import Test from './Components/Pages/Test';
+import About from './Components/Pages/About/About';
+import Contact from './Components/Pages/Contact/Contact';
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/trending" element={<TrendingBook />} />
           <Route path="/classic" element={<Classic />} />
           <Route path="/kids" element={<Kids />} />

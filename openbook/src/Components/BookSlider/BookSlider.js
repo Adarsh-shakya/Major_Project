@@ -10,13 +10,20 @@ const BookSlider = ({Books,name,path }) => {
       <div className='sliderHeading'>
         <Link to={path}>{name}</Link>
       </div>
-      <div className='sliderContenar'>
-        {
-          Books.map((data,index)=>(
-            <Card data={data} key={index}/>
-          ))
-        }
+      <div className='outSlider'>
+          <div className='sliderContenar'>
+           {
+              Books.slice(0, 6).map((data, index) => (
+                <Card data={data} key={index} />
+              ))
+            } 
       </div>
+      <div className='more'>
+      <Link className='lnk' to={path}>more..</Link>
+      </div>
+      </div>
+     
+      
     </div>
    </div>
   )

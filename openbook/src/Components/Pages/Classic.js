@@ -1,46 +1,28 @@
-import React from 'react'
+import React ,{useState,useEffect} from 'react'
+import axios from 'axios';
 import Card from '../Card/Crad'
 import './Page.css'
 import { Link} from 'react-router-dom'
 
 const Classic = () => {
    
-  const Books=[
-    {
-      "img":"https://covers.openlibrary.org/b/id/4339840-M.jpg",
-      "link":"https://archive.org/details/teddysbutton0000unse/mode/2up?ref=ol&view=theater"
-    },
-    {
-      "img":"https://covers.openlibrary.org/b/id/4481209-M.jpg",
-      "link":"https://archive.org/details/cu31924011846825/mode/2up?ref=ol&view=theater"
-    },
-    {
-      "img":"https://covers.openlibrary.org/b/id/5651246-M.jpg",
-      "link":"https://archive.org/details/selectionsfromwr00landrich/page/n5/mode/2up?ref=ol&view=theater"
-    },
-    {
-      "img":"https://covers.openlibrary.org/b/id/9269962-M.jpg",
-      "link":""
-    },
-    {
-      "img":"https://covers.openlibrary.org/b/id/5913760-M.jpg",
-      "link":"https://archive.org/details/cihm_65288/page/n5/mode/2up?ref=ol&view=theater"
-    },
-    {
-      "img":"https://covers.openlibrary.org/b/id/6150962-M.jpg",
-      "link":"https://archive.org/details/derschwarzevorh00dbgoog/page/n1/mode/2up?ref=ol&view=theater"
-    },
-    {
-      "img":"https://covers.openlibrary.org/b/id/578965-M.jpg",
-      "link":"https://archive.org/details/kwaidanstories00hearrich?ref=ol&view=theater"
-    },{
-      "img":"https://covers.openlibrary.org/b/id/12784957-M.jpg",
-      "link":""
-    },{
-      "img":"https://covers.openlibrary.org/b/id/4339840-M.jpg",
-      "link":"https://archive.org/details/teddysbutton0000unse/mode/2up?ref=ol&view=theater"
-    },
-   ]
+  const [BooksData, setBooksData] = useState([]);
+  
+
+   useEffect(() => {
+    // Fetch BooksData from your backend server
+    axios.get('http://localhost:5000/user/getbook')
+      .then(response => {
+        setBooksData(response.data);
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching BooksData:', error);
+      });
+  }, []);
+
+  const ClassicBooksData = BooksData.find(data => data.name === 'Classic Book');
+  
 
   return (
     <div className='page'>
@@ -55,11 +37,9 @@ const Classic = () => {
         <div className='addButton'>
        <Link to='/addbook'><i class="bi bi-plus-lg"></i></Link>
        </div>
-       {
-            Books.map((data,index)=>(
-              <Card data={data} key={index}/>
-            ))
-           }
+       {ClassicBooksData && ClassicBooksData.Books.map((book, index) => (
+              <Card data={book} key={index} />
+            ))}
         </div>
      </div>     
  </div>

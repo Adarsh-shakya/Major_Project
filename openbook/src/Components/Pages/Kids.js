@@ -1,38 +1,26 @@
-import React from 'react'
+import React ,{useState,useEffect} from 'react'
+import axios from 'axios';
 import Card from '../Card/Crad'
 import './Page.css'
 import { Link} from 'react-router-dom'
 
 const Kids = () => {
-  const Books=[
-    {
-      "img":"https://covers.openlibrary.org/w/id/1738685-M.jpg",
-      "link":"https://archive.org/details/morebears0000nesb/page/n1/mode/2up?view=theater"
-    },
-    {
-      "img":"https://covers.openlibrary.org/w/id/10311413-M.jpg",
-      "link":""
-    },
-    {
-      "img":"https://covers.openlibrary.org/w/id/9784016-M.jpg",
-      "link":""
-    },
-    {
-      "img":"https://covers.openlibrary.org/w/id/8751865-M.jpg",
-      "link":""
-    },
-    {
-      "img":"https://covers.openlibrary.org/w/id/7441737-M.jpg",
-      "link":""
-    },
-    {
-      "img":"https://covers.openlibrary.org/w/id/890617-M.jpg",
-      "link":""
-    },{
-      "img":"https://covers.openlibrary.org/w/id/8762184-M.jpg",
-      "link":""
-    },
-   ]
+  const [BooksData, setBooksData] = useState([]);
+
+  useEffect(() => {
+    // Fetch BooksData from your backend server
+    axios.get('http://localhost:5000/user/getbook')
+      .then(response => {
+        setBooksData(response.data);
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching BooksData:', error);
+      });
+  }, []);
+
+  const kidBooksData = BooksData.find(data => data.name === 'Kids Book');
+
   return (
     <div className='page'>
        <div className='pageHeader'>
@@ -45,11 +33,9 @@ const Kids = () => {
            <div className='addButton'>
           <Link to='addbook'><i class="bi bi-plus-lg"></i></Link>
           </div>
-          {
-            Books.map((data,index)=>(
-              <Card data={data} key={index}/>
-            ))
-           }
+          {kidBooksData && kidBooksData.Books.map((book, index) => (
+              <Card data={book} key={index} />
+            ))}
            </div>
         </div>     
     </div>

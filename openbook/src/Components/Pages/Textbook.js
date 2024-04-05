@@ -1,38 +1,26 @@
-import React from 'react'
+import React ,{useState,useEffect} from 'react'
+import axios from 'axios';
 import Card from '../Card/Crad'
 import './Page.css'
 import { Link} from 'react-router-dom'
 
 const Textbook = () => {
-  const Books=[
-    {
-      "img":"https://covers.openlibrary.org/w/id/12903218-M.jpg",
-      "link":"https://archive.org/details/whitemollyork00pack/page/n9/mode/2up?ref=ol&view=theater"
-    },
-    {
-      "img":"https://covers.openlibrary.org/w/id/14431210-M.jpg",
-      "link":""
-    },
-    {
-      "img":"https://covers.openlibrary.org/w/id/13103292-M.jpg",
-      "link":""
-    },
-    {
-      "img":"https://covers.openlibrary.org/w/id/11640288-M.jpg",
-      "link":""
-    },
-    {
-      "img":"https://covers.openlibrary.org/w/id/14360778-M.jpg",
-      "link":""
-    },
-    {
-      "img":"https://covers.openlibrary.org/w/id/363906-M.jpg",
-      "link":""
-    },{
-      "img":"https://covers.openlibrary.org/w/id/3701205-M.jpg",
-      "link":""
-    },
-   ]
+  const [BooksData, setBooksData] = useState([]);
+  
+
+   useEffect(() => {
+    // Fetch BooksData from your backend server
+    axios.get('http://localhost:5000/user/getbook')
+      .then(response => {
+        setBooksData(response.data);
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching BooksData:', error);
+      });
+  }, []);
+
+  const textBooksData = BooksData.find(data => data.name === 'TextBook');
 
   return (
     <div className='page'>
@@ -47,11 +35,9 @@ const Textbook = () => {
         <div className='addButton'>
        <Link to='addbook'><i class="bi bi-plus-lg"></i></Link>
        </div>
-       {
-            Books.map((data,index)=>(
-              <Card data={data} key={index}/>
-            ))
-           }
+       {textBooksData && textBooksData.Books.map((book, index) => (
+              <Card data={book} key={index} />
+            ))}
         </div>
      </div>     
  </div>

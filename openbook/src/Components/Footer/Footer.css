@@ -1,0 +1,30 @@
+.footer{
+    
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.788);
+}
+.bottumfooter{
+    text-align: center;
+    background-color: black;
+    color: whitesmoke;
+    height: 30px;
+}
+.footerbody{
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    
+}
+.footercontenar{
+    width: 25%;
+    color: white;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 40px;
+}
+.footer i{
+    font-size: 20px;
+}

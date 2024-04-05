@@ -1,41 +1,26 @@
-import React from 'react'
+import React ,{useState,useEffect} from 'react'
+import axios from 'axios';
 import Card from '../Card/Crad'
 import './Page.css'
 import { Link} from 'react-router-dom'
 
 const Thrillera = () => {
-  const Books=[
-    {
-      "img":"https://covers.openlibrary.org/b/id/8775559-M.jpg",
-      "link":"https://archive.org/details/littlewomenormeg00alcoiala/page/6/mode/2up?ref=ol&view=theater"
-    },
-    {
-      "img":"https://covers.openlibrary.org/b/id/13322313-M.jpg?default=%27https://openlibrary.org/images/icons/avatar_book.png%27",
-      "link":"https://archive.org/details/greatexpectatio00dick/page/4/mode/2up?ref=ol&view=theater"
-    },
-    {
-      "img":"https://covers.openlibrary.org/b/id/8153054-M.jpg",
-      "link":""
-    },
-    {
-      "img":"https://covers.openlibrary.org/b/id/14428305-M.jpg?default=%27https://openlibrary.org/images/icons/avatar_book.png%27",
-      "link":"https://archive.org/details/elingeniosohi00cerv/mode/2up?ref=ol&view=theater"
-    },
-    {
-      "img":"https://covers.openlibrary.org/b/id/552443-M.jpg?default=%27https://openlibrary.org/images/icons/avatar_book.png%27",
-      "link":"https://archive.org/details/wonderfulwizardo00baumiala/mode/2up?ref=ol&view=theater"
-    },
-    {
-      "img":"https://covers.openlibrary.org/b/id/6717853-M.jpg?default=%27https://openlibrary.org/images/icons/avatar_book.png%27",
-      "link":"https://archive.org/details/adventuresofsher00doylrich/mode/2up?ref=ol&view=theater"
-    },{
-      "img":"https://covers.openlibrary.org/b/id/12374726-M.jpg",
-      "link":""
-    },{
-      "img":"https://covers.openlibrary.org/b/id/872432-M.jpg?default=%27https://openlibrary.org/images/icons/avatar_book.png%27",
-      "link":"https://archive.org/details/macbethtraductio06shak/mode/2up?ref=ol&view=theater"
-    },
-   ]
+  const [BooksData, setBooksData] = useState([]);
+  
+
+   useEffect(() => {
+    // Fetch BooksData from your backend server
+    axios.get('http://localhost:5000/user/getbook')
+      .then(response => {
+        setBooksData(response.data);
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching BooksData:', error);
+      });
+  }, []);
+
+  const historyBooks = BooksData.find(data => data.name === 'History Books');
 
   return (
     <div className='page'>
@@ -50,11 +35,9 @@ const Thrillera = () => {
         <div className='addButton'>
        <Link to='/addbook'><i class="bi bi-plus-lg"></i></Link>
        </div>
-       {
-            Books.map((data,index)=>(
-              <Card data={data} key={index}/>
-            ))
-           }
+       {historyBooks && historyBooks.Books.map((book, index) => (
+              <Card data={book} key={index} />
+            ))}
         </div>
      </div>     
  </div>

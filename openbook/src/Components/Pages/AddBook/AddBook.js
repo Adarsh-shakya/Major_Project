@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 import './AddBook.css';
 
 const AddBook = () => {
+  const navigate = useNavigate();
   const [bookInfo, setBookInfo] = useState({
-    title: '',
-    imageUrl: '',
-    category: 'Fiction' // Default category
+    img: '',
+    link: '',
+    name: 'Trending Book' // Default category
   });
 
   const handleChange = (e) => {
@@ -16,10 +19,27 @@ const AddBook = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Book Information:', bookInfo);
-    // You can perform additional actions here, like sending the data to a server
+    try {
+      const response = await axios.put('http://localhost:5000/user/book', bookInfo);
+      if (response.status === 200) {
+        console.log('Book added successfully');
+        // Optionally, you can reset the form after successful submission
+        setBookInfo({
+          img: '',
+          link: '',
+          name: 'Trending Book'
+        });
+        navigate('/');
+      } else {
+        console.error('Failed to add book');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (
@@ -34,7 +54,7 @@ const AddBook = () => {
             <input
               type="text"
               id="bookTitle"
-              name="title"
+              name="img"
               value={bookInfo.title}
               onChange={handleChange}
             />
@@ -44,7 +64,7 @@ const AddBook = () => {
             <input
               type="text"
               id="bookUrl"
-              name="imageUrl"
+              name="link"
               value={bookInfo.imageUrl}
               onChange={handleChange}
             />
@@ -53,15 +73,15 @@ const AddBook = () => {
             <label htmlFor="bookCategory">Category:</label>
             <select
               id="bookCategory"
-              name="category"
+              name="name"
               value={bookInfo.category}
               onChange={handleChange}
             >
-              <option value="trending">Trending</option>
-              <option value="classic">classic</option>
-              <option value="kids">Kids</option>
-              <option value="History">History</option>
-              <option value="textbook">Testbook</option>
+              <option value="Trending Book">Trending </option>
+              <option value="Classic Book">Classic</option>
+              <option value="Kids Book">Kids</option>
+              <option value="History Books">History</option>
+              <option value="textBook">Testbook</option>
               {/* Add more options as needed */}
             </select>
           </div>

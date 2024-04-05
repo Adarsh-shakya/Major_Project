@@ -1,39 +1,28 @@
-import React from 'react'
+import React ,{useState,useEffect} from 'react'
+import axios from 'axios';
 import Card from '../Card/Crad'
 import './Page.css'
 import { Link} from 'react-router-dom'
 
 
 const TrendingBook = () => {
-  const Books=[
-    {
-      "img":"https://covers.openlibrary.org/b/id/14348537-M.jpg?default=%27https://openlibrary.org/images/icons/avatar_book.png%27",
-      "link":"https://archive.org/details/prideprejudice0000unse_r8e0/page/12/mode/2up?ref=ol&view=theater"
-    },
-    {
-      "img":"https://covers.openlibrary.org/b/id/8463846-M.jpg",
-      "link":""
-    },
-    {
-      "img":"https://covers.openlibrary.org/b/id/8775559-M.jpg?default=%27https://openlibrary.org/images/icons/avatar_book.png%27",
-      "link":"https://archive.org/details/littlewomenormeg00alcoiala/mode/2up?ref=ol&view=theater"
-    },
-    {
-      "img":"https://covers.openlibrary.org/b/id/8315603-M.jpg",
-      "link":""
-    },
-    {
-      "img":"https://covers.openlibrary.org/b/id/8392798-M.jpg",
-      "link":""
-    },
-    {
-      "img":"https://covers.openlibrary.org/b/id/671290-M.jpg",
-      "link":""
-    },{
-      "img":"https://covers.openlibrary.org/b/id/14421833-M.jpg",
-      "link":""
-    },
-   ]
+  const [BooksData, setBooksData] = useState([]);
+  
+
+   useEffect(() => {
+    // Fetch BooksData from your backend server
+    axios.get('http://localhost:5000/user/getbook')
+      .then(response => {
+        setBooksData(response.data);
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching BooksData:', error);
+      });
+  }, []);
+
+  const trendingBooksData = BooksData.find(data => data.name === 'Trending Book');
+
   return (
     <div className='page'>
        <div className='pageHeader'>
@@ -47,11 +36,9 @@ const TrendingBook = () => {
            <div className='addButton'>
           <Link to='/addbook'><i class="bi bi-plus-lg"></i></Link>
           </div>
-           {
-            Books.map((data,index)=>(
-              <Card data={data} key={index}/>
-            ))
-           }
+          {trendingBooksData && trendingBooksData.Books.map((book, index) => (
+              <Card data={book} key={index} />
+            ))}
            </div>
         </div>     
     </div>

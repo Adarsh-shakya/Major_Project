@@ -2,15 +2,17 @@
     display: flex;
     justify-content: center;
     margin: 10px;
+    
 }
 .slider{
     width: 100%;
+
 }
 .sliderHeading{
     height: 50px;
     padding-left: 15px;
     border-top-left-radius: 10px;
-    background-image: linear-gradient(to right, rgb(20, 20, 148) , white);
+    background-image: linear-gradient(to right, rgb(2, 56, 172) , white);
     
 }
 .sliderHeading a{
@@ -20,7 +22,20 @@
     
 }
 .sliderContenar{
-    border: 2px solid green;
     display: flex;
-    overflow: scroll;
+    padding-top: 20px;
+
+    
+}
+.outSlider{
+    
+    height: 390px;
+}
+.more{
+    position: relative;
+}
+ .lnk{
+    position: absolute;
+    right: 10px;
+
 }
