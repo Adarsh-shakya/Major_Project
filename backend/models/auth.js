@@ -7,4 +7,4 @@ const userSchema = mongoose.Schema({
     joinedOn: {type: Date, default: Date.now },
 })
 
-export default mongoose.model("User",userSchema)
+export default mongoose.model("User",userSchema);
